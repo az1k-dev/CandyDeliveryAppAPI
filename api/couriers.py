@@ -1,10 +1,10 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 import models.couriers
 
 router = APIRouter(prefix="/couriers")
 
 
-@router.post("")
+@router.post("", status_code=status.HTTP_201_CREATED)
 def import_couriers(couriers: models.couriers.CouriersPostRequest):
     return couriers
 
