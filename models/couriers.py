@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, Field
 from enum import Enum
 
 
@@ -9,7 +9,7 @@ class CourierTypeEnum(str, Enum):
 
 
 class CourierItem(BaseModel):
-    courier_id: int
+    id: int = Field(alias="courier_id")
     courier_type: CourierTypeEnum
     regions: list[int]
     working_hours: list[str]
