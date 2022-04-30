@@ -32,7 +32,7 @@ class Courier(Base):
     courier_type = Column(String)
 
     regions = relationship("Region", secondary=couriers_regions, back_populates="couriers")
-    hours = relationship("Hour", secondary=couriers_hours, back_populates="couriers")
+    working_hours = relationship("Hour", secondary=couriers_hours, back_populates="couriers")
     orders = relationship("Order", back_populates="courier")
 
 
@@ -58,7 +58,7 @@ class Order(Base):
 
     courier = relationship("Courier", back_populates="orders")
     region = relationship("Region", back_populates="orders")
-    hours = relationship("Hour", secondary=orders_hours, back_populates="orders")
+    delivery_hours = relationship("Hour", secondary=orders_hours, back_populates="orders")
 
 
 class Hour(Base):
