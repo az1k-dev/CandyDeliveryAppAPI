@@ -35,6 +35,10 @@ class Courier(Base):
     working_hours = relationship("Hour", secondary=couriers_hours, back_populates="couriers")
     orders = relationship("Order", back_populates="courier")
 
+    def __repr__(self):
+        return f"Courier(id={self.id}, type={self.courier_type}, regions={self.regions}," \
+               f" orders={self.orders}, working_hours={self.working_hours})"
+
 
 class Region(Base):
     __tablename__ = "regions"
@@ -44,6 +48,9 @@ class Region(Base):
 
     couriers = relationship("Courier", secondary=couriers_regions, back_populates="regions")
     orders = relationship("Order", back_populates="region")
+
+    def __repr__(self):
+        return f"Region(id={self.id}, region={self.region}"
 
 
 class Order(Base):
@@ -60,6 +67,9 @@ class Order(Base):
     region = relationship("Region", back_populates="orders")
     delivery_hours = relationship("Hour", secondary=orders_hours, back_populates="orders")
 
+    def __repr__(self):
+        return f"Order(id={self.id}, weight={self.weight}, courier_id={self.courier_id}, region={self.region})"
+
 
 class Hour(Base):
     __tablename__ = "hours"
@@ -69,3 +79,6 @@ class Hour(Base):
 
     couriers = relationship("Courier", secondary=couriers_hours, back_populates="working_hours")
     orders = relationship("Order", secondary=orders_hours, back_populates="delivery_hours")
+
+    def __repr__(self):
+        return f"Hour(id={self.id}, hour={self.hour})"
