@@ -4,7 +4,7 @@ import models.couriers
 router = APIRouter(prefix="/couriers")
 
 
-@router.post("/")
+@router.post("")
 def import_couriers(couriers: models.couriers.CouriersPostRequest):
     return couriers
 
