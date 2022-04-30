@@ -1,14 +1,12 @@
 from fastapi import FastAPI
-import models
 
-app = FastAPI()
-
-
-@app.post("/couriers")
-def import_couriers(couriers: models.CouriersPostRequest):
-    return couriers
+from settings import settings
+import api
 
 
-@app.get("/couriers/{courier_id}")
-def import_couriers(courier_id: int):
-    return f"Hey, courier {courier_id}"
+app = FastAPI(
+    title=settings.app_title,
+    description=settings.app_description
+)
+
+app.include_router(api.router)
