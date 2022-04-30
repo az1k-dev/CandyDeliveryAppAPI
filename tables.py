@@ -34,5 +34,8 @@ class Order(Base):
 
     id = Column(Integer, primary_key=True, unique=True, autoincrement=False)
     weight = Column(Integer)
+    courier_id = Column(Integer, ForeignKey("couriers.id"))
+    region_id = Column(Integer, ForeignKey("regions.id"))
+
     courier = relationship("Courier", back_populates="orders")
     region = relationship("Region", back_populates="orders")
