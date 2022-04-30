@@ -67,5 +67,5 @@ class Hour(Base):
     id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     hour = Column(String, unique=True)
 
-    couriers = relationship("Courier", secondary=couriers_hours, back_populates="hours")
-    orders = relationship("Order", secondary=orders_hours, back_populates="hours")
+    couriers = relationship("Courier", secondary=couriers_hours, back_populates="working_hours")
+    orders = relationship("Order", secondary=orders_hours, back_populates="delivery_hours")
