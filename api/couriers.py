@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status, Depends
 from services.couriers import CouriersService
-from models.couriers import CouriersPostRequest
+from models.couriers import CouriersPostRequest, CourierGetResponse, CourierItem
 
 router = APIRouter(prefix="/couriers")
 
@@ -12,4 +12,4 @@ def import_couriers(couriers: CouriersPostRequest, service: CouriersService = De
 
 @router.get("/{courier_id}")
 def get_courier_info(courier_id: int, service: CouriersService = Depends()):
-    return service.get_courier(courier_id)
+    return CourierItem(**CourierItem.from_orm(service.get_courier(courier_id)).dict()).get_getresponse()
